@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function() {
         Route::post('/personal_info/save', [ProfileController::class, 'personal_info_save'])->name('profile.personal_info.save');
         Route::get('/account_info', [ProfileController::class, 'account_info'])->name('profile.account_info');
         Route::post('/account_info/save', [ProfileController::class, 'account_info_save'])->name('profile.account_info.save');
+        Route::get('/change_password', [ProfileController::class, 'change_password'])->name('profile.change_password');
+        Route::post('/change_password/save', [ProfileController::class, 'change_password_save'])->name('profile.change_password.save');
     });
 });
 

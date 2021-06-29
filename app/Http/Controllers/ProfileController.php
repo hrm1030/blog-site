@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -61,5 +62,35 @@ class ProfileController extends Controller
     public function account_info()
     {
         return view('pages.profile.account_info');
+    }
+
+    public function change_password()
+    {
+        return view('pages.profile.change_password');
+    }
+
+    public function change_password_save(Request $request)
+    {
+        $validate = $request->validate([
+            'current_password' => 'required|string|min:6',
+            'new_password' => 'required|string|min:6'
+        ]);
+
+        if($validate)
+        {
+            if(Hash::check($request->current_password, Auth::user()->password))
+            {
+                User::where('id', Auth::user()->id)->update([
+                    'password' => $request->new_password
+                ]);
+                $error = 'Your password is changed successfully';
+            } else {
+                $error = 'Your current password is not correct. Please try again.';
+            }
+
+            return redirect()->back()->withErrors([
+                'error' => $error
+            ]);
+        }
     }
 }
