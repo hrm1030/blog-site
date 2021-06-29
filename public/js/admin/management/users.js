@@ -25,7 +25,27 @@ var KTDatatablesAdvancedColumnRendering = function() {
 		$('#user_table_search_status, #user_table_search_type').selectpicker();
 
         $('.state').change(function() {
-            console.log($(this).val());
+            var nRow = $(this).parents('tr').eq(0);
+            var state = $(this).val();
+            var user_id = $(this).parents('tr').eq(0).attr('user_id');
+            $.ajax({
+                url : '/management/users/change_state',
+                method : 'post',
+                data : {
+                    user_id : user_id,
+                    state : state
+                },
+                success : function(data) {
+                    toastr.success('Updated successfully.');
+                    if(state == 1)
+                    {
+                        var html = `<span class="label label-lg font-weight-bold label-light-success label-inline">Actived</span>`;
+                    } else {
+                        var html = `<span class="label label-lg font-weight-bold label-light-danger label-inline">Disabled</span>`;
+                    }
+                    nRow.find('#state_td_'+user_id).html(html);
+                }
+            })
         });
 
         table.on('click', '.btn_delete', function() {

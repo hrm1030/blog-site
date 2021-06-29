@@ -65,6 +65,8 @@ Route::prefix('/')->middleware('auth', 'admin')->group(function() {
         Route::get('/menu', [ManageController::class, 'menu'])->name('management.menu');
         Route::get('/users', [ManageController::class, 'users'])->name('management.users');
         Route::post('/users/delete', [ManageController::class, 'user_delete']);
+        Route::post('/users/change_state', [ManageController::class, 'state_change']);
+
         Route::get('/universities', [ManageController::class, 'universities'])->name('management.universities');
         Route::post('/university/save', [ManageController::class, 'university_save'])->name('management.university.save');
         Route::post('/get_university',  [ManageController::class, 'get_university']);

@@ -36,6 +36,17 @@ class ManageController extends Controller
         ]);
     }
 
+    public function state_change(Request $request)
+    {
+        User::where('id', $request->user_id)->update([
+            'state'=>$request->state
+        ]);
+
+        return response()->json([
+            'msg' => 'updated'
+        ]);
+    }
+
     public function universities()
     {
         $universities = University::all();

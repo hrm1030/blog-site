@@ -23,12 +23,12 @@
         <table class="table table-separate table-head-custom table-checkable" id="user_table">
             <thead>
                 <tr>
-                    <th><i class="fas fa-user-alt"></i> User</th>
-                    <th><i class="fas fa-envelope"></i> Email</th>
-                    <th><i class="fas fa-phone"></i> Phone</th>
-                    <th><i class="far fa-calendar-check"></i> Created Date</th>
-                    <th>Status</th>
-                    <th>Type</th>
+                    <th width="18%"><i class="fas fa-user-alt"></i> User</th>
+                    <th width="18%"><i class="fas fa-envelope"></i> Email</th>
+                    <th width="13%"><i class="fas fa-phone"></i> Phone</th>
+                    <th width="13%"><i class="far fa-calendar-check"></i> Created Date</th>
+                    <th width="10%">Status</th>
+                    <th width="13%">Type</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -49,7 +49,7 @@
                         @else
                         <div class="d-flex align-items-center">
                             @php
-                                $color_array = array('success', 'danger', 'success', 'warning', 'dark', 'primary', 'info');
+                                $color_array = array('success', 'danger', 'warning', 'dark', 'primary', 'info');
                                 $color = array_rand($color_array, 1);
                             @endphp
                             <div class="symbol symbol-50 symbol-light-{{ $color_array[$color] }}" flex-shrink-0>
@@ -70,7 +70,7 @@
                         @endphp
                         {{ $date['day'] }}/{{ $date['month'] }}/{{ $date['year'] }}
                     </td>
-                    <td id="state_td">
+                    <td id="state_td_{{ $user->id }}">
                         @if($user->state == 1)
                         <span class="label label-lg font-weight-bold label-light-success label-inline">Actived</span>
                         @else
@@ -85,32 +85,22 @@
                         @endif
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm mr-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon2-gear"></i> Setting</button>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-item">
-                                <label class="col-6 col-form-label">State</label>
-                                <div class="col-6">
-                                    <span class="switch switch-outline switch-icon switch-success">
-                                        <label>
-                                            <input type="checkbox" checked="checked" user_id="{{ $user->id }}" name="state" class="state" value="1">
-                                            <span></span>
-                                        </label>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="dropdown-item">
-                                <label class="col-6 col-form-label">Permission</label>
-                                <div class="col-6">
-                                    <span class="switch switch-outline switch-icon switch-primary">
-                                        <label>
-                                            <input type="checkbox" checked="checked" name="permission" class="permission" user_id="{{ $user->id }}" value="1">
-                                            <span></span>
-                                        </label>
-                                    </span>
-                                </div>
-                            </div>
+                        <div class="row">
+                            @if($user->state == 1)
+                            <select class="form-control col-md-7 state">
+                                <option value="1" selected>Enable</option>
+                                <option value="0" >Disable</option>
+                            </select>
+                            @else
+                            <select class="form-control col-md-7 state">
+                                <option value="1" >Enable</option>
+                                <option value="0" selected>Disable</option>
+                            </select>
+                            @endif
+
+                            <button type="button" class="btn btn-icon btn-danger btn-sm mr-2 btn_delete" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </div>
-                        <button type="button" class="btn btn-icon btn-danger btn-sm mr-2 btn_delete" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></button>
+
                     </td>
                 </tr>
                 @endforeach
