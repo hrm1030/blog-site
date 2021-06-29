@@ -39,10 +39,10 @@
         <table class="table table-separate table-head-custom table-checkable" id="department_table">
             <thead>
                 <tr>
-                    <th><i class="icon-xl la la-university"></i> Department</th>
-                    <th><i class="icon-xl la la-university"></i> University & Faculty</th>
-                    <th width="15%"><i class="fas fa-chalkboard-teacher"></i> Professors</th>
-                    <th width="15%"><i class="icon-xl la la-graduation-cap"></i>Students</th>
+                    <th width="24%"><i class="icon-xl la la-university"></i> Department</th>
+                    <th width="40%"><i class="icon-xl la la-university"></i> University & Faculty</th>
+                    <th width="13%"><i class="fas fa-chalkboard-teacher"></i> Professors</th>
+                    <th width="13%"><i class="icon-xl la la-graduation-cap"></i>Students</th>
                     <th>Actions</th>
                 </tr>
             </thead>
