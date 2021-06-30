@@ -235,11 +235,17 @@ class ManageController extends Controller
 
     public function add_course(Request $request)
     {
-        $department_id = DB::select("SHOW TABLE STATUS LIKE 'departments'");
+        $department_id = $request->department_id;
+        if($department_id == '')
+        {
+            $department = DB::select("SHOW TABLE STATUS LIKE 'departments'");
+            $department_id = $department[0]->Auto_increment;
+        }
+
         $course = Course::create([
             'name' => $request->course_name,
             'content' => $request->course_content,
-            'department_id' => $department_id[0]->Auto_increment
+            'department_id' => $department_id
         ]);
 
         return response()->json([
@@ -296,9 +302,10 @@ class ManageController extends Controller
     public function get_department(Request $request)
     {
         $department = Department::where('id', $request->department_id)->first();
-
+        $courses = Course::where('department_id', $department->id)->get();
         return response()->json([
-            'department' => $department
+            'department' => $department,
+            'courses' => $courses
         ]);
     }
 

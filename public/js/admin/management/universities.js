@@ -133,6 +133,14 @@ var KTDatatablesAdvancedColumnRendering = function() {
 		});
 
         $('#btn_new').click(function() {
+            $('#name').val('');
+            $('.image-input-wrapper').removeAttr("style");
+            $('#location').val('');
+            $('#founded_date').val('');
+            $('#faculties_cnt').val('');
+            $('#professors_cnt').val('');
+            $('#students_cnt').val('');
+            $('#description').val('');
             $('#universityModal').modal('show');
         });
 

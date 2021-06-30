@@ -170,6 +170,17 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         $('#btn_new').click(function() {
+            $('#name').val('');
+            $('.image-input-wrapper').removeAttr("style");
+            $('#email').val('');
+            $('#phone').val('');
+            $('#website').val('');
+            $('#birthday').val('');
+            $('#university').select2('val', 0);
+            $('#faculty').select2('val', 0);
+            $('#department').select2('val', 0);
+            $('#major').val('');
+            $('#description').val('');
             $('#professorModal').modal('show');
         });
 

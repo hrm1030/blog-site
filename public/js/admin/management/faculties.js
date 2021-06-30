@@ -113,6 +113,13 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         $('#btn_new').click(function() {
+            $('#name').val('');
+            $('.image-input-wrapper').removeAttr("style");
+            $('#university').select2('val', 0);
+            $('#departments_cnt').val('');
+            $('#professors_cnt').val('');
+            $('#students_cnt').val('');
+            $('#description').val('');
             $('#facultyModal').modal('show');
         });
 

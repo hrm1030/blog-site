@@ -7,6 +7,9 @@ var KTDatatablesAdvancedColumnRendering = function() {
     }
 
 	var init = function() {
+        var course_table = $('#course_table');
+        var cTable = course_table.dataTable({searching: false, paging: false, info: false});
+
 		var table = $('#department_table');
         var validation;
         var form = KTUtil.getById('department_form');
@@ -135,6 +138,14 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         $('#btn_new').click(function() {
+            $('#name').val('');
+            $('.image-input-wrapper').removeAttr("style");
+            $('#university').select2('val', 0);
+            $('#faculty').select2('val', 0);
+            $('#professors_cnt').val('');
+            $('#students_cnt').val('');
+            $('#description').val('');
+            cTable.fnClearTable();
             $('#departmentModal').modal('show');
         });
 
@@ -224,6 +235,12 @@ var KTDatatablesAdvancedColumnRendering = function() {
                     var department = data.department;
                     $('#name').val(department.name);
                     $('#university').select2('val', `${department.university_id}`);
+                    var courses = data.courses;
+                    console.log(courses)
+                    for(var i=0 ; i < courses.length; i ++)
+                    {
+                        cTable.fnAddData([courses[i].name, courses[i].content, `<button type="button" course_id="${courses[i].id}" class="btn btn-sm btn-danger btn-icon btn_cancel"><i class="far fa-trash-alt"></i></button>`])
+                    }
                     $.ajax({
                         url : '/management/department/get_faculty',
                         method : 'post',
@@ -243,6 +260,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
                             $('#students_cnt').val(department.students_cnt);
                             $('#description').val(department.description);
                             $('#department_id').val(department.id);
+
                             $('#departmentModal').modal('show');
                         },
                         error : function() {
@@ -257,8 +275,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
             })
         });
 
-        var course_table = $('#course_table');
-        var cTable = course_table.dataTable({searching: false, paging: false, info: false});
+
 
         $('#btn_course_add').click(function() {
             validation_course.validate().then(function(status) {
@@ -270,7 +287,8 @@ var KTDatatablesAdvancedColumnRendering = function() {
                         method : 'post',
                         data : {
                             course_name : course_name,
-                            course_content : course_content
+                            course_content : course_content,
+                            department_id : $('#department_id').val()
                         },
                         success : function(data) {
 

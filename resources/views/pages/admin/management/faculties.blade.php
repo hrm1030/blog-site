@@ -129,7 +129,7 @@
                             <label class="col-xl-3 col-lg-3 col-form-label">University <span class="text-danger">*</span></label>
                             <div class="col-lg-9 col-xl-6">
                                 <select class="form-control" name="university" id="university" style="width: 100%">
-                                    <option value=""></option>
+                                    <option value="0"></option>
                                     @foreach($universities as $university)
                                         <option value="{{ $university->id }}">{{ $university->name }}</option>
                                     @endforeach
