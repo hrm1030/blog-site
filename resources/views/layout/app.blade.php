@@ -122,9 +122,9 @@
 		@include('partials.userpanel')
         @endif
 		<!-- end::User Panel-->
-		<!--begin::Chat Panel-->
+		{{-- <!--begin::Chat Panel-->
 		@include('partials.chat')
-		<!--end::Chat Panel-->
+		<!--end::Chat Panel--> --}}
 		<!--begin::Scrolltop-->
 		<div id="kt_scrolltop" class="scrolltop">
 			<span class="svg-icon">
@@ -140,8 +140,8 @@
 			</span>
 		</div>
 		<!--end::Scrolltop-->
-		<!--begin::Sticky Toolbar-->
-		<ul class="sticky-toolbar nav flex-column pl-2 pr-2 pt-3 pb-3 mt-4">
+
+		{{-- <ul class="sticky-toolbar nav flex-column pl-2 pr-2 pt-3 pb-3 mt-4">
 
 			<!--begin::Item-->
 			<li class="nav-item" id="kt_sticky_toolbar_chat_toggler" data-toggle="tooltip" title="Chat" data-placement="left">
@@ -150,7 +150,7 @@
 				</a>
 			</li>
 			<!--end::Item-->
-		</ul>
+		</ul> --}}
 
 	</body>
 	<!--end::Body-->

@@ -39,8 +39,8 @@
         <table class="table table-separate table-head-custom table-checkable" id="volunteer_table">
             <thead>
                 <tr>
-                    <th width="20%"><i class="icon-xl la la-user"></i> Volunteer</th>
-                    <th width="40%"><i class="fa fa-map-marker-alt"></i> volunteer/Faculty/Department</th>
+                    <th><i class="icon-xl la la-user"></i> Volunteer</th>
+                    <th><i class="fa fa-map-marker-alt"></i> University</th>
                     <th width="15%"><i class="fas fa-tags"></i> Major</th>
                     <th width="15%"><i class="icon-xl la la-calendar-alt"></i> Birthday</th>
                     <th width="15%">Actions</th>

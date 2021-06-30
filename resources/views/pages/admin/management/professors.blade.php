@@ -39,8 +39,8 @@
         <table class="table table-separate table-head-custom table-checkable" id="professor_table">
             <thead>
                 <tr>
-                    <th width="20%"><i class="icon-xl la la-user"></i> professor</th>
-                    <th width="40%"><i class="fa fa-map-marker-alt"></i> professor/Faculty/Department</th>
+                    <th width="20%"><i class="icon-xl la la-user"></i> Professor</th>
+                    <th width="40%"><i class="fa fa-map-marker-alt"></i> University</th>
                     <th width="15%"><i class="fas fa-tags"></i> Major</th>
                     <th width="15%"><i class="icon-xl la la-calendar-alt"></i> Birthday</th>
                     <th width="15%">Actions</th>
