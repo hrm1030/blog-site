@@ -23,7 +23,7 @@
         </div>
         <!--end::Icon-->
         <!--begin::Input-->
-        <input type="text" class="form-control h-auto border-0 py-7 px-1 font-size-h6" placeholder="Search university" id="keyword" name="keyword">
+        <input type="text" class="form-control h-auto border-0 py-7 px-1 font-size-h6" placeholder="Search department" id="keyword" name="keyword">
         <!--end::Input-->
     </div>
 </form>

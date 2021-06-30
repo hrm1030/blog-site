@@ -64,6 +64,18 @@ class ProfileController extends Controller
         return view('pages.profile.account_info');
     }
 
+    public function account_info_save(Request $request)
+    {
+        User::where('id', Auth::user()->id)->update([
+            'username' => $request->username,
+            'email' => $request->email
+        ]);
+
+        return redirect()->back()->withErrors([
+            'alert' => 'Your account info is successfully updated.'
+        ]);
+    }
+
     public function change_password()
     {
         return view('pages.profile.change_password');
