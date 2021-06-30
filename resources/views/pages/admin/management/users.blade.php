@@ -34,7 +34,7 @@
             </thead>
             <tbody>
                 @foreach ($users as $user)
-                <tr user_id="{{ $user->id }}">
+                <tr>
                     <td>
                         @if (isset($user->photo))
                         <div class="d-flex align-items-center">
@@ -87,18 +87,18 @@
                     <td>
                         <div class="row">
                             @if($user->state == 1)
-                            <select class="form-control col-md-7 state">
+                            <select class="form-control col-md-7 state" user_id="{{ $user->id }}">
                                 <option value="1" selected>Enable</option>
                                 <option value="0" >Disable</option>
                             </select>
                             @else
-                            <select class="form-control col-md-7 state">
+                            <select class="form-control col-md-7 state" user_id="{{ $user->id }}">
                                 <option value="1" >Enable</option>
                                 <option value="0" selected>Disable</option>
                             </select>
                             @endif
 
-                            <button type="button" class="btn btn-icon btn-danger btn-sm mr-2 btn_delete" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-icon btn-danger btn-sm mr-2 btn_delete" user_id="{{ $user->id }}" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </div>
 
                     </td>

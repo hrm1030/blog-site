@@ -51,7 +51,7 @@
                 @php
                     // die(print_r($volunteer[0]['volunteer']->id));
                 @endphp
-                    <tr volunteer_id="{{ $volunteer->id }}">
+                    <tr>
                         <td>
                             @if (isset($volunteer->photo) && $volunteer->photo != '')
                             <div class="d-flex align-items-center">
@@ -90,8 +90,8 @@
                             {{ $volunteer->birthday }}
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-primary btn_edit" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></button>
-                            <button type="button" class="btn btn-sm btn-danger btn_delete" data-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-primary btn_edit" volunteer_id="{{ $volunteer->id }}" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-danger btn_delete" volunteer_id="{{ $volunteer->id }}" data-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 @endforeach

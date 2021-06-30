@@ -234,7 +234,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         table.on('click', '.btn_delete', function() {
-            var volunteer_id = $(this).parents('tr').eq(0).attr('volunteer_id');
+            var volunteer_id = $(this).attr('volunteer_id');
             var nRow = $(this).parents('tr')[0];
             Swal.fire({
                 title: "Are you sure?",
@@ -275,7 +275,8 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         table.on('click', '.btn_edit', function() {
-            var volunteer_id = $(this).parents('tr').eq(0).attr('volunteer_id');
+            var volunteer_id = $(this).attr('volunteer_id');
+            // console.log(volunteer_id)
             $.ajax({
                 url : '/management/get_volunteer',
                 method : 'post',
@@ -284,6 +285,11 @@ var KTDatatablesAdvancedColumnRendering = function() {
                 },
                 success : function(data) {
                     var volunteer = data.volunteer;
+                    if(volunteer.photo != '')
+                    {
+                        $('.image-input-wrapper').attr("style", 'background-image: url("/'+volunteer.photo+'")');
+                    }
+
                     $('#name').val(volunteer.fullname);
                     $('#email').val(volunteer.email);
                     $('#phone').val(volunteer.phone);
@@ -324,7 +330,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
                                     $('#volunteer_id').val(volunteer.id);
                                 },
                                 error : function() {
-                                    toastr.error('Happening any errors on getting faculty.');
+                                    toastr.error('Happening any errors on getting department.');
                                 }
                             });
                             $('#volunteerModal').modal('show');

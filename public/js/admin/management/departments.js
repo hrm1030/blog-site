@@ -172,7 +172,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         table.on('click', '.btn_delete', function() {
-            var department_id = $(this).parents('tr').eq(0).attr('department_id');
+            var department_id = $(this).attr('department_id');
             var nRow = $(this).parents('tr')[0];
             Swal.fire({
                 title: "Are you sure?",
@@ -213,7 +213,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         table.on('click', '.btn_edit', function() {
-            var department_id = $(this).parents('tr').eq(0).attr('department_id');
+            var department_id = $(this).attr('department_id');
             $.ajax({
                 url : '/management/get_department',
                 method : 'post',

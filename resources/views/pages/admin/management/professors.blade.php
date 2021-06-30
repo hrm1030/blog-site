@@ -51,7 +51,7 @@
                 @php
                     // die(print_r($professor[0]['professor']->id));
                 @endphp
-                    <tr professor_id="{{ $professor->id }}">
+                    <tr>
                         <td>
                             @if (isset($professor->photo) && $professor->photo != '')
                             <div class="d-flex align-items-center">
@@ -90,8 +90,8 @@
                             {{ $professor->birthday }}
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-primary btn_edit" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></button>
-                            <button type="button" class="btn btn-sm btn-danger btn_delete" data-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-primary btn_edit" professor_id="{{ $professor->id }}" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-danger btn_delete" professor_id="{{ $professor->id }}" data-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 @endforeach

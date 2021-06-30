@@ -27,7 +27,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
         $('.state').change(function() {
             var nRow = $(this).parents('tr').eq(0);
             var state = $(this).val();
-            var user_id = $(this).parents('tr').eq(0).attr('user_id');
+            var user_id = $(this).attr('user_id');
             $.ajax({
                 url : '/management/users/change_state',
                 method : 'post',
@@ -49,7 +49,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         table.on('click', '.btn_delete', function() {
-            var user_id = $(this).parents('tr').eq(0).attr('user_id');
+            var user_id = $(this).attr('user_id');
             var nRow = $(this).parents('tr')[0];
             Swal.fire({
                 title: "Are you sure?",

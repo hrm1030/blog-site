@@ -47,7 +47,7 @@
             </thead>
             <tbody>
                 @foreach($faculties as $faculty)
-                    <tr faculty_id="{{ $faculty->id }}">
+                    <tr>
                         <td>
                             <div class="d-flex align-items-center">
                                 <div class="symbol symbol-50 flex-shrink-0">
@@ -71,8 +71,8 @@
                             {{ $faculty->students_cnt }}
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-primary btn_edit" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></button>
-                            <button type="button" class="btn btn-sm btn-danger btn_delete" data-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-primary btn_edit" faculty_id="{{ $faculty->id }}" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-danger btn_delete" faculty_id="{{ $faculty->id }}" data-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 @endforeach

@@ -48,7 +48,7 @@
             </thead>
             <tbody>
                 @foreach($departments as $department)
-                    <tr department_id="{{ $department->id }}">
+                    <tr>
                         <td>
                             <span class="font-weight-bolder text-primary">{{ $department->name }}</span>
                         </td>
@@ -62,8 +62,8 @@
                             {{ $department->students_cnt }}
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-icon btn-primary btn_edit" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></button>
-                            <button type="button" class="btn btn-sm btn-icon btn-danger btn_delete" data-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-icon btn-primary btn_edit" department_id="{{ $department->id }}" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-icon btn-danger btn_delete" department_id="{{ $department->id }}" data-toggle="tooltip" title="Delete"><i class="far fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 @endforeach

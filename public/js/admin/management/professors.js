@@ -234,7 +234,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         table.on('click', '.btn_delete', function() {
-            var professor_id = $(this).parents('tr').eq(0).attr('professor_id');
+            var professor_id = $(this).attr('professor_id');
             var nRow = $(this).parents('tr')[0];
             Swal.fire({
                 title: "Are you sure?",
@@ -275,7 +275,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         table.on('click', '.btn_edit', function() {
-            var professor_id = $(this).parents('tr').eq(0).attr('professor_id');
+            var professor_id = $(this).attr('professor_id');
             $.ajax({
                 url : '/management/get_professor',
                 method : 'post',
@@ -284,6 +284,11 @@ var KTDatatablesAdvancedColumnRendering = function() {
                 },
                 success : function(data) {
                     var professor = data.professor;
+                    if(professor.photo != '')
+                    {
+                        $('.image-input-wrapper').attr("style", 'background-image: url("/'+professor.photo+'")');
+                    }
+
                     $('#name').val(professor.fullname);
                     $('#email').val(professor.email);
                     $('#phone').val(professor.phone);

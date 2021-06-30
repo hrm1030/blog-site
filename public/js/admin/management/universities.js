@@ -148,7 +148,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         table.on('click', '.btn_delete', function() {
-            var university_id = $(this).parents('tr').eq(0).attr('university_id');
+            var university_id = $(this).attr('university_id');
             var nRow = $(this).parents('tr')[0];
             Swal.fire({
                 title: "Are you sure?",
@@ -189,7 +189,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         table.on('click', '.btn_edit', function() {
-            var university_id = $(this).parents('tr').eq(0).attr('university_id');
+            var university_id = $(this).attr('university_id');
             $.ajax({
                 url : '/management/get_university',
                 method : 'post',
