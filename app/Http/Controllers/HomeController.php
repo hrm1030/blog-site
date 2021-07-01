@@ -185,11 +185,19 @@ class HomeController extends Controller
         ];
 
         Mail::send('pages.email', $data, function($message) use ($data) {
-        $message->to($data['email'])
-        ->subject($data['subject']);
+            $message->to($data['email'])->subject($data['subject']);
         });
-        return redirect()->back()->withErrors([
-            'alert' =>'Supported successfully.'
-        ]);
+        // $headers = array(
+        //     'From' => $email,
+        //     'Reply-To' => $supporter_email,
+        //     'X-Mailer' => 'PHP/' . phpversion()
+        // );
+
+        // mail($supporter_email, 'Support', $content, $headers);
+        // mail($email, 'Support', 'Thanks for your report');
+
+        // return redirect()->back()->withErrors([
+        //     'alert' =>'Supported successfully.'
+        // ]);
     }
 }
