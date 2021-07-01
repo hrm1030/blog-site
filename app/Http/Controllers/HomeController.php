@@ -184,7 +184,7 @@ class HomeController extends Controller
             'content' => $request->content
         ];
 
-        Mail::send('pages.email', $data, function($message) use ($data) {
+        Mail::send('pages.support', $data, function($message) use ($data) {
             $message->to($data['email'])->subject($data['subject']);
         });
         // $headers = array(
