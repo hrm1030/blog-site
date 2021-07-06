@@ -18,13 +18,6 @@ var KTDatatablesAdvancedColumnRendering = function() {
 			form,
 			{
 				fields: {
-                    faculty_image: {
-						validators: {
-							notEmpty: {
-								message: 'Faculty Image is required'
-							}
-						}
-					},
 					name: {
 						validators: {
 							notEmpty: {

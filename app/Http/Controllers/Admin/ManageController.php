@@ -70,21 +70,37 @@ class ManageController extends Controller
             $filenameToStore = $filenameWithoutExtension.'.'.$extension;
             // Storing The Image
             $path = $request->file('university_image')->storeAs('upload/universities', $filenameToStore);
+        } else {
+            $path = null;
         }
 
         $university_id = $request->university_id;
         if($university_id != null)
         {
-            University::where('id', $university_id)->update([
-                'name' => $name,
-                'location' => $location,
-                'founded_date' => $founded_date,
-                'description' => $description,
-                'photo' => $path,
-                'faculties_cnt' => $faculties_cnt,
-                'professors_cnt' => $professors_cnt,
-                'students_cnt' => $students_cnt
-            ]);
+            if($path != null)
+            {
+                University::where('id', $university_id)->update([
+                    'name' => $name,
+                    'location' => $location,
+                    'founded_date' => $founded_date,
+                    'description' => $description,
+                    'photo' => $path,
+                    'faculties_cnt' => $faculties_cnt,
+                    'professors_cnt' => $professors_cnt,
+                    'students_cnt' => $students_cnt
+                ]);
+            } else {
+                University::where('id', $university_id)->update([
+                    'name' => $name,
+                    'location' => $location,
+                    'founded_date' => $founded_date,
+                    'description' => $description,
+                    'faculties_cnt' => $faculties_cnt,
+                    'professors_cnt' => $professors_cnt,
+                    'students_cnt' => $students_cnt
+                ]);
+            }
+
 
             $alert = 'Successfully updated!';
         } else {
@@ -152,21 +168,37 @@ class ManageController extends Controller
             $filenameToStore = $filenameWithoutExtension.'.'.$extension;
             // Storing The Image
             $path = $request->file('faculty_image')->storeAs('upload/faculties', $filenameToStore);
+        } else {
+            $path = null;
         }
 
         $faculty_id = $request->faculty_id;
 
         if($faculty_id != null)
         {
-            Faculty::where('id', $faculty_id)->update([
-                'name' => $name,
-                'university_id' => $university,
-                'departments_cnt' => $departments_cnt,
-                'professors_cnt' => $professors_cnt,
-                'students_cnt' => $students_cnt,
-                'description' => $description,
-                'photo' => $path
-            ]);
+
+            if($path != null)
+            {
+                Faculty::where('id', $faculty_id)->update([
+                    'name' => $name,
+                    'university_id' => $university,
+                    'departments_cnt' => $departments_cnt,
+                    'professors_cnt' => $professors_cnt,
+                    'students_cnt' => $students_cnt,
+                    'description' => $description,
+                    'photo' => $path
+                ]);
+            } else {
+                Faculty::where('id', $faculty_id)->update([
+                    'name' => $name,
+                    'university_id' => $university,
+                    'departments_cnt' => $departments_cnt,
+                    'professors_cnt' => $professors_cnt,
+                    'students_cnt' => $students_cnt,
+                    'description' => $description,
+                ]);
+            }
+
             $alert = 'Successfully updated!';
         } else {
             Faculty::create([
@@ -370,7 +402,7 @@ class ManageController extends Controller
             // Storing The Image
             $path = $request->file('volunteer_image')->storeAs('upload/volunteers', $filenameToStore);
         } else {
-            $path = '';
+            $path = null;
         }
 
         if($volunteer_id == null)
@@ -389,22 +421,41 @@ class ManageController extends Controller
                 'photo' => $path,
                 'description' => $description
             ]);
+
             $alert = 'Successfully saved!';
         } else {
-            Employee::where('id', $volunteer_id)->update([
-                'fullname' => $name,
-                'email' => $email,
-                'phone' => $phone,
-                'website' => $website,
-                'birthday' => $birthday,
-                'university_id' => $university_id,
-                'faculty_id' => $faculty_id,
-                'department_id' => $department_id,
-                'majors' => $major,
-                'emp_type' => 'student',
-                'photo' => $path,
-                'description' => $description
-            ]);
+            if($path != null)
+            {
+                Employee::where('id', $volunteer_id)->update([
+                    'fullname' => $name,
+                    'email' => $email,
+                    'phone' => $phone,
+                    'website' => $website,
+                    'birthday' => $birthday,
+                    'university_id' => $university_id,
+                    'faculty_id' => $faculty_id,
+                    'department_id' => $department_id,
+                    'majors' => $major,
+                    'emp_type' => 'student',
+                    'photo' => $path,
+                    'description' => $description
+                ]);
+            } else {
+                Employee::where('id', $volunteer_id)->update([
+                    'fullname' => $name,
+                    'email' => $email,
+                    'phone' => $phone,
+                    'website' => $website,
+                    'birthday' => $birthday,
+                    'university_id' => $university_id,
+                    'faculty_id' => $faculty_id,
+                    'department_id' => $department_id,
+                    'majors' => $major,
+                    'emp_type' => 'student',
+                    'description' => $description
+                ]);
+            }
+
             $alert = 'Successfully updated!';
         }
         return redirect()->back()->withErrors([
@@ -509,7 +560,7 @@ class ManageController extends Controller
             // Storing The Image
             $path = $request->file('professor_image')->storeAs('upload/professors', $filenameToStore);
         } else {
-            $path = '';
+            $path = null;
         }
 
         if($professor_id == null)
@@ -530,20 +581,38 @@ class ManageController extends Controller
             ]);
             $alert = 'Successfully saved!';
         } else {
-            Employee::where('id', $professor_id)->update([
-                'fullname' => $name,
-                'email' => $email,
-                'phone' => $phone,
-                'website' => $website,
-                'birthday' => $birthday,
-                'university_id' => $university_id,
-                'faculty_id' => $faculty_id,
-                'department_id' => $department_id,
-                'majors' => $major,
-                'emp_type' => 'professor',
-                'photo' => $path,
-                'description' => $description
-            ]);
+            if($path != null)
+            {
+                Employee::where('id', $professor_id)->update([
+                    'fullname' => $name,
+                    'email' => $email,
+                    'phone' => $phone,
+                    'website' => $website,
+                    'birthday' => $birthday,
+                    'university_id' => $university_id,
+                    'faculty_id' => $faculty_id,
+                    'department_id' => $department_id,
+                    'majors' => $major,
+                    'emp_type' => 'professor',
+                    'photo' => $path,
+                    'description' => $description
+                ]);
+            } else {
+                Employee::where('id', $professor_id)->update([
+                    'fullname' => $name,
+                    'email' => $email,
+                    'phone' => $phone,
+                    'website' => $website,
+                    'birthday' => $birthday,
+                    'university_id' => $university_id,
+                    'faculty_id' => $faculty_id,
+                    'department_id' => $department_id,
+                    'majors' => $major,
+                    'emp_type' => 'professor',
+                    'description' => $description
+                ]);
+            }
+
             $alert = 'Successfully updated!';
         }
         return redirect()->back()->withErrors([

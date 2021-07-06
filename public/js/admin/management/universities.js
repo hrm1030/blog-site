@@ -33,13 +33,6 @@ var KTDatatablesAdvancedColumnRendering = function() {
 			form,
 			{
 				fields: {
-                    university_image: {
-						validators: {
-							notEmpty: {
-								message: 'University Image is required'
-							}
-						}
-					},
 					name: {
 						validators: {
 							notEmpty: {
