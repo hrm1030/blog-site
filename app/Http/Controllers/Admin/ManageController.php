@@ -440,6 +440,32 @@ class ManageController extends Controller
         ]);
     }
 
+    public function get_faculty_department_in_volunteer(Request $request)
+    {
+        $faculties = Faculty::where('university_id', $request->university_id)->get();
+        if(count($faculties) > 0)
+        {
+            $departments = Department::where('faculty_id', $faculties[0]->id)->get();
+        } else {
+            $departments = [];
+        }
+
+        // die(print_r($departments));
+        return response()->json([
+            'departments' => $departments,
+            'faculties' => $faculties
+        ]);
+    }
+
+    public function get_department_in_volunteer(Request $request)
+    {
+        $departments = Department::where('faculty_id', $request->faculty_id)->get();
+
+        return response()->json([
+            'departments' => $departments
+        ]);
+    }
+
     public function get_volunteer(Request $request)
     {
         $volunteer = Volunteer::where('id', $request->volunteer_id)->first();

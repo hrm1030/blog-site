@@ -89,6 +89,8 @@ Route::prefix('/')->middleware('auth', 'admin')->group(function() {
         Route::post('/department/get_faculty', [ManageController::class, 'get_faculty_in_department']);
         Route::post('/get_department', [ManageController::class, 'get_department']);
         Route::post('/department/delete', [ManageController::class, 'department_delete']);
+        Route::post('/volunteer/get_faculty_department', [ManageController::class, 'get_faculty_department_in_volunteer']);
+        Route::post('/volunteer/get_department', [ManageController::class, 'get_department_in_volunteer']);
 
         Route::get('/volunteers', [ManageController::class, 'volunteers'])->name('management.volunteers');
         Route::post('/volunteer/save', [ManageController::class, 'volunteer_save'])->name('management.volunteer.save');

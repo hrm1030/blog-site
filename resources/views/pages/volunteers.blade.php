@@ -59,7 +59,7 @@
                 </div>
                 <!--end::User-->
                 <!--begin::Desc-->
-                <p class="mb-7"> {{ substr($volunteer->description, 0, 100) }}</p>
+                <p class="mb-7"> {{ $volunteer->description }} </p>
                 <!--end::Desc-->
                 <!--begin::Info-->
                 <div class="mb-7">
