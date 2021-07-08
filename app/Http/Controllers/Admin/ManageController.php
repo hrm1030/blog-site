@@ -11,6 +11,7 @@ use App\Models\Faculty;
 use App\Models\Department;
 use Illuminate\Support\Facades\DB;
 use App\Models\Course;
+use App\Models\Volunteer;
 
 class ManageController extends Controller
 {
@@ -352,32 +353,11 @@ class ManageController extends Controller
 
     public function volunteers()
     {
-        $volunteers = DB::table('employees')
-                        ->join('universities', 'employees.university_id', '=', 'universities.id')
-                        ->join('faculties', 'employees.faculty_id', '=', 'faculties.id')
-                        ->join('departments', 'employees.faculty_id', '=', 'departments.id')
-                        ->where('employees.emp_type', 'student')
-                        ->select('employees.*', 'universities.name as university_name', 'faculties.name as faculty_name', 'departments.name as department_name')->get();
+        $volunteers = Volunteer::all();
 
-        $universities = University::all();
-        if(count($universities) > 0) {
-            $faculties = Faculty::where('university_id', $universities[0]->id)->get();
-        } else {
-            $faculties = [];
-        }
-
-        if(count($faculties) > 0 )
-        {
-            $departments = Department::where('faculty_id', $faculties[0]->id)->get();
-        } else {
-            $departments = [];
-        }
 
         return view('pages.admin.management.volunteers')->with([
             'volunteers' => $volunteers,
-            'universities' => $universities,
-            'faculties' => $faculties,
-            'departments' => $departments
         ]);
     }
 
@@ -387,9 +367,9 @@ class ManageController extends Controller
         $email = $request->email;
         $phone = $request->phone;
         $website = $request->website;
-        $university_id = $request->university;
-        $faculty_id = $request->faculty;
-        $department_id = $request->department;
+        $university = $request->university;
+        $faculty = $request->faculty;
+        $department = $request->department;
         $major = $request->major;
         $birthday = $request->birthday;
         $volunteer_id = $request->volunteer_id;
@@ -407,17 +387,16 @@ class ManageController extends Controller
 
         if($volunteer_id == null)
         {
-            Employee::create([
+            Volunteer::create([
                 'fullname' => $name,
                 'email' => $email,
                 'phone' => $phone,
                 'website' => $website,
                 'birthday' => $birthday,
-                'university_id' => $university_id,
-                'faculty_id' => $faculty_id,
-                'department_id' => $department_id,
+                'university' => $university,
+                'faculty' => $faculty,
+                'department' => $department,
                 'majors' => $major,
-                'emp_type' => 'student',
                 'photo' => $path,
                 'description' => $description
             ]);
@@ -426,17 +405,16 @@ class ManageController extends Controller
         } else {
             if($path != null)
             {
-                Employee::where('id', $volunteer_id)->update([
+                Volunteer::where('id', $volunteer_id)->update([
                     'fullname' => $name,
                     'email' => $email,
                     'phone' => $phone,
                     'website' => $website,
                     'birthday' => $birthday,
-                    'university_id' => $university_id,
-                    'faculty_id' => $faculty_id,
-                    'department_id' => $department_id,
+                    'university' => $university,
+                    'faculty' => $faculty,
+                    'department' => $department,
                     'majors' => $major,
-                    'emp_type' => 'student',
                     'photo' => $path,
                     'description' => $description
                 ]);
@@ -447,11 +425,10 @@ class ManageController extends Controller
                     'phone' => $phone,
                     'website' => $website,
                     'birthday' => $birthday,
-                    'university_id' => $university_id,
-                    'faculty_id' => $faculty_id,
-                    'department_id' => $department_id,
+                    'university' => $university,
+                    'faculty' => $faculty,
+                    'department' => $department,
                     'majors' => $major,
-                    'emp_type' => 'student',
                     'description' => $description
                 ]);
             }
@@ -465,36 +442,10 @@ class ManageController extends Controller
 
     public function get_volunteer(Request $request)
     {
-        $volunteer = Employee::where('id', $request->volunteer_id)->first();
+        $volunteer = Volunteer::where('id', $request->volunteer_id)->first();
 
         return response()->json([
             'volunteer' => $volunteer
-        ]);
-    }
-
-    public function get_faculty_department_in_volunteer(Request $request)
-    {
-        $faculties = Faculty::where('university_id', $request->university_id)->get();
-        if(count($faculties) > 0)
-        {
-            $departments = Department::where('faculty_id', $faculties[0]->id)->get();
-        } else {
-            $departments = [];
-        }
-
-        // die(print_r($departments));
-        return response()->json([
-            'departments' => $departments,
-            'faculties' => $faculties
-        ]);
-    }
-
-    public function get_department_in_volunteer(Request $request)
-    {
-        $departments = Department::where('faculty_id', $request->faculty_id)->get();
-
-        return response()->json([
-            'departments' => $departments
         ]);
     }
 

@@ -154,7 +154,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         $("#phone").inputmask("mask", {
-            "mask": "(999) 999-9999"
+            "mask": "9999999999"
         });
 
         $('#university').select2({

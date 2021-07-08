@@ -5,6 +5,7 @@ use App\Models\Course;
 use App\Models\Department;
 use App\Models\Faculty;
 use App\Models\University;
+use App\Models\Volunteer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -72,6 +73,36 @@ class HomeController extends Controller
         ]);
     }
 
+    public function university_readmore(Request $request)
+    {
+        $id = $request->id;
+        $university = University::where('id', $id)->first();
+
+        return response()->json([
+            'university' => $university
+        ]);
+    }
+
+    public function faculty_readmore(Request $request)
+    {
+        $id = $request->id;
+        $faculty = Faculty::where('id', $id)->first();
+
+        return response()->json([
+            'faculty' => $faculty
+        ]);
+    }
+
+    public function department_readmore(Request $request)
+    {
+        $id = $request->id;
+        $department = Department::where('id', $id)->first();
+
+        return response()->json([
+            'department' => $department
+        ]);
+    }
+
     public function faculty_search(Request $request)
     {
         $name = $request->keyword;
@@ -103,12 +134,7 @@ class HomeController extends Controller
 
     public function volunteers()
     {
-        $volunteers = DB::table('employees')
-                        ->join('universities', 'employees.university_id', '=', 'universities.id')
-                        ->join('faculties', 'employees.faculty_id', '=', 'faculties.id')
-                        ->join('departments', 'employees.faculty_id', '=', 'departments.id')
-                        ->where('emp_type', 'student')
-                        ->select('employees.*', 'universities.name as university_name', 'faculties.name as faculty_name', 'departments.name as department_name')->get();
+        $volunteers = Volunteer::all();
 
         return view('pages.volunteers')->with([
             'volunteers' => $volunteers,

@@ -21,8 +21,11 @@ Route::get('/faculties/{university_id}', [HomeController::class, 'faculties'])->
 Route::get('/departments/{faculty_id}', [HomeController::class, 'departments'])->name('departments');
 Route::get('/department/{department_id}', [HomeController::class, 'department'])->name('department');
 Route::post('/universities/search', [HomeController::class, 'university_search']);
+Route::post('/university/readmore', [HomeController::class, 'university_readmore']);
 Route::post('/faculties/search', [HomeController::class, 'faculty_search']);
+Route::post('/faculty/readmore', [HomeController::class, 'faculty_readmore']);
 Route::post('/departments/search', [HomeController::class, 'department_search']);
+Route::post('/department/readmore', [HomeController::class, 'department_readmore']);
 
 Route::get('/volunteering', [HomeController::class, 'volunteers'])->name('volunteering');
 Route::post('/volunteering/search', [HomeController::class, 'volunteers_search']);
@@ -89,8 +92,6 @@ Route::prefix('/')->middleware('auth', 'admin')->group(function() {
 
         Route::get('/volunteers', [ManageController::class, 'volunteers'])->name('management.volunteers');
         Route::post('/volunteer/save', [ManageController::class, 'volunteer_save'])->name('management.volunteer.save');
-        Route::post('/volunteer/get_faculty_department', [ManageController::class, 'get_faculty_department_in_volunteer']);
-        Route::post('/volunteer/get_department', [ManageController::class, 'get_department_in_volunteer']);
         Route::post('/get_volunteer', [ManageController::class, 'get_volunteer']);
         Route::post('/volunteer/delete', [ManageController::class, 'volunteer_delete']);
 

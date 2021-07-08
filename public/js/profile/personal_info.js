@@ -115,7 +115,7 @@ var KTProfile = function () {
 		avatar = new KTImageInput('kt_profile_avatar');
 
         $("#phone").inputmask("mask", {
-            "mask": "(999) 999-9999"
+            "mask": "9999999999"
         });
 
 	}

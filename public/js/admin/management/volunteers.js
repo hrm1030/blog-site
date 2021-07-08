@@ -154,19 +154,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
         });
 
         $("#phone").inputmask("mask", {
-            "mask": "(999) 999-9999"
-        });
-
-        $('#university').select2({
-            placeholder: 'Select a university'
-        });
-
-        $('#faculty').select2({
-            placeholder: 'Select a faculty'
-        });
-
-        $('#department').select2({
-            placeholder: 'Select a department'
+            "mask": "9999999999"
         });
 
         $('#btn_new').click(function() {
@@ -176,68 +164,12 @@ var KTDatatablesAdvancedColumnRendering = function() {
             $('#phone').val('');
             $('#website').val('');
             $('#birthday').val('');
-            $('#university').select2('val', 0);
-            $('#faculty').select2('val', 0);
-            $('#department').select2('val', 0);
+            $('#university').val('');
+            $('#faculty').val('');
+            $('#department').val('');
             $('#major').val('');
             $('#description').val('');
             $('#volunteerModal').modal('show');
-        });
-
-        var university_change = function(university_id) {
-            $.ajax({
-                url : '/management/volunteer/get_faculty_department',
-                method : 'post',
-                data : {
-                    university_id : university_id
-                },
-                success : function(data) {
-                    $('#faculty').html('');
-                    $('#department').html('');
-                    var faculties = data.faculties;
-                    var departments = data.departments;
-                    for(var i = 0 ; i < faculties.length ; i ++)
-                    {
-                        $('#faculty').append(`<option value="${faculties[i].id}">${faculties[i].name}</option>`)
-                    }
-                    for(var i = 0 ; i < departments.length ; i ++)
-                    {
-                        $('#department').append(`<option value="${departments[i].id}">${departments[i].name}</option>`)
-                    }
-                },
-                error : function() {
-                    toastr.error('Happening any errors on getting faculty.');
-                }
-            });
-        }
-
-        $('#university').change(function() {
-            var university_id = $(this).val();
-
-            university_change(university_id);
-
-        });
-
-        $('#faculty').change(function() {
-            var department_id = $(this).val();
-            $.ajax({
-                url : '/management/volunteer/get_department',
-                method : 'post',
-                data : {
-                    department_id : department_id
-                },
-                success : function(data) {
-                    $('#department').html('');
-                    var departments = data.departments;
-                    for(var i = 0 ; i < departments.length ; i ++)
-                    {
-                        $('#department').append(`<option value="${departments[i].id}">${departments[i].name}</option>`)
-                    }
-                },
-                error : function() {
-                    toastr.error('Happening any errors on getting department.');
-                }
-            });
         });
 
         $('#btn_save').click(function() {
@@ -305,52 +237,14 @@ var KTDatatablesAdvancedColumnRendering = function() {
                     $('#email').val(volunteer.email);
                     $('#phone').val(volunteer.phone);
                     $('#website').val(volunteer.website);
-                    $('#university').select2('val', `${volunteer.university_id}`);
-                    $.ajax({
-                        url : '/management/volunteer/get_faculty_department',
-                        method : 'post',
-                        data : {
-                            university_id : volunteer.university_id
-                        },
-                        success : function(data) {
-                            $('#faculty').html('');
-                            var faculties = data.faculties;
-                            for(var i = 0 ; i < faculties.length ; i ++)
-                            {
-                                $('#faculty').append(`<option value="${faculties[i].id}">${faculties[i].name}</option>`)
-                            }
-                            $('#faculty').val(volunteer.faculty_id);
-
-                            $.ajax({
-                                url : '/management/volunteer/get_department',
-                                method : 'post',
-                                data : {
-                                    faculty_id : volunteer.faculty_id
-                                },
-                                success : function(data) {
-                                    $('#department').html('');
-                                    var departments = data.departments;
-                                    for(var i = 0 ; i < departments.length ; i ++)
-                                    {
-                                        $('#department').append(`<option value="${departments[i].id}">${departments[i].name}</option>`)
-                                    }
-                                    $('#department').val(volunteer.department_id);
-                                    $('#birthday').val(volunteer.birthday);
-                                    $('#major').val(volunteer.majors);
-                                    $('#description').val(volunteer.description);
-                                    $('#volunteer_id').val(volunteer.id);
-                                },
-                                error : function() {
-                                    toastr.error('Happening any errors on getting department.');
-                                }
-                            });
-                            $('#volunteerModal').modal('show');
-                        },
-                        error : function() {
-                            toastr.error('Happening any errors on getting faculty.');
-                        }
-                    })
-
+                    $('#university').val(volunteer.university);
+                    $('#faculty').val(volunteer.faculty);
+                    $('#department').val(volunteer.department);
+                    $('#birthday').val(volunteer.birthday);
+                    $('#major').val(volunteer.majors);
+                    $('#description').val(volunteer.description);
+                    $('#volunteer_id').val(volunteer.id);
+                    $('#volunteerModal').modal('show');
                 },
                 error : function() {
                     toastr.error('Happenning any errors on getting data.');

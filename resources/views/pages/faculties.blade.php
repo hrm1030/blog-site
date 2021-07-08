@@ -2,7 +2,8 @@
 
 @section('page-content')
 <script src="{{ asset('/js/search.js') }}"></script>
-<form class="d-flex position-relative w-75 px-lg-40 m-auto" action="{{ url('/faculties/search') }}" method="POST" id="searchForm">
+<script src="{{ asset('/js/faculty.js') }}"></script>
+<form class="d-flex position-relative w-75 px-lg-40 m-auto" action="{{ url('/universities/search') }}" method="POST" id="searchForm">
     @csrf
     <div class="input-group">
         <!--begin::Icon-->
@@ -23,7 +24,7 @@
         </div>
         <!--end::Icon-->
         <!--begin::Input-->
-        <input type="text" class="form-control h-auto border-0 py-7 px-1 font-size-h6" placeholder="Search faculty" id="keyword" name="keyword">
+        <input type="text" class="form-control h-auto border-0 py-7 px-1 font-size-h6" placeholder="Search university" id="keyword" name="keyword">
         <!--end::Input-->
     </div>
 </form>
@@ -54,7 +55,7 @@
                 </div>
                 <!--end::Info-->
                 <!--begin::Description-->
-                <div class="mb-10 mt-5 font-weight-bold">{{ substr($faculty->description, 0, 200) }}...</div>
+                <div class="mb-10 mt-5 font-weight-bold">{{ substr($faculty->description, 0, 200) }}...<br> <span class="text-primary read_more" faculty_id="{{ $faculty->id }}" style="cursor: pointer;">Read more</span></div>
                 <!--end::Description-->
                 <!--begin::Data-->
                 <div class="d-flex mb-5">
@@ -85,5 +86,21 @@
     </div>
     @endforeach
 
+</div>
+
+<div class="modal fade" id="readmoreModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalSizeLg" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="faculty_name"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-10 mt-5 font-weight-bold" id="description"></div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

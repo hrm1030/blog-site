@@ -114,7 +114,7 @@ var KTLogin = function() {
         }
 
         $("#phone").inputmask("mask", {
-            "mask": "(999) 999-9999"
+            "mask": "9999999999"
         });
 
         $('#btn_signup_submit').on('click', function (e) {

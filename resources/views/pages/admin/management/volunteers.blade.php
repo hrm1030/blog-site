@@ -81,7 +81,7 @@
                             @endif
                         </td>
                         <td>
-                            <span class="font-weight-bolder text-danger">{{ $volunteer->university_name }}</span>/<span class="font-weight-bolder text-success">{{ $volunteer->faculty_name }}</span>/<span class="font-weight-bolder text-primary">{{ $volunteer->department_name }}</span>
+                            <span class="font-weight-bolder text-danger">{{ $volunteer->university }}</span>/<span class="font-weight-bolder text-success">{{ $volunteer->faculty }}</span>/<span class="font-weight-bolder text-primary">{{ $volunteer->department }}</span>
                         </td>
                         <td>
                             {{ $volunteer->majors }}
@@ -178,34 +178,19 @@
                         <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-form-label">University <span class="text-danger">*</span></label>
                             <div class="col-lg-9 col-xl-6">
-                                <select class="form-control" name="university" id="university" style="width: 100%">
-                                    <option value=""></option>
-                                    @foreach($universities as $university)
-                                        <option value="{{ $university->id }}">{{ $university->name }}</option>
-                                    @endforeach
-                                </select>
+                                <input class="form-control" type="text" id="university" name="university" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-form-label">Faculty <span class="text-danger">*</span></label>
                             <div class="col-lg-9 col-xl-6">
-                                <select class="form-control" name="faculty" id="faculty" style="width: 100%">
-                                    <option value=""></option>
-                                    @foreach($faculties as $faculty)
-                                        <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
-                                    @endforeach
-                                </select>
+                                <input class="form-control" type="text" id="faculty" name="faculty" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-form-label">Department <span class="text-danger">*</span></label>
                             <div class="col-lg-9 col-xl-6">
-                                <select class="form-control" name="department" id="department" style="width: 100%">
-                                    <option value=""></option>
-                                    @foreach($departments as $department)
-                                        <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                    @endforeach
-                                </select>
+                                <input class="form-control" type="text" id="department" name="department" />
                             </div>
                         </div>
                         <div class="form-group row">
